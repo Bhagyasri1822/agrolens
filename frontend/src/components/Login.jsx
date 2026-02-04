@@ -15,7 +15,7 @@ function Login() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault()
-      const response = await axios.post('http://localhost:8000/login', formData)
+      const response = await axios.post('https://agrolens-3h2e.onrender.com/login', formData)
        if(response.status === 200) {
         alert("You have successfully logged in")
         localStorage.setItem('useremail', formData.email)

@@ -110,8 +110,8 @@ function UploadPage() {
 
       // Determine endpoint based on mode
       const endpoint = recommendationMode === 'ai' 
-        ? 'http://localhost:8000/ask/ai'
-        : 'http://localhost:8000/chat'
+        ? 'https://agrolens-3h2e.onrender.com/ask/ai'
+        : 'https://agrolens-3h2e.onrender.com/chat'
 
       const requestData = recommendationMode === 'ai'
         ? {

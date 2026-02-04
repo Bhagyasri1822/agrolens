@@ -23,7 +23,7 @@ function Register() {
       e.preventDefault()
       console.log('Registration data:', formData)
       // pass  formData.name as username, formData.email, formData.password
-      const response = await axios.post('http://127.0.0.1:8000/register', {
+      const response = await axios.post('https://agrolens-3h2e.onrender.com/register', {
         username: formData.name,
         email: formData.email,
         password: formData.password
