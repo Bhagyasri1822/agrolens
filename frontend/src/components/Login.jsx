@@ -20,6 +20,7 @@ function Login() {
         alert("You have successfully logged in")
         localStorage.setItem('useremail', formData.email)
         localStorage.setItem('password', formData.password)
+        localStorage.setItem('token', response.data.access_token)
       } else {
         alert("LoginFailed")
       }
