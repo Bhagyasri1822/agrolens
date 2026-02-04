@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Leaf, Mail, Lock, Eye, EyeOff, User, Phone, ArrowLeft } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Register() {
   const [showPassword, setShowPassword] = useState(false)
@@ -15,9 +16,32 @@ function Register() {
     acceptTerms: false
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Registration data:', formData)
+  const navigate = useNavigate();
+  const handleSubmit =  async (e) => {
+    try {
+      
+      e.preventDefault()
+      console.log('Registration data:', formData)
+      // pass  formData.name as username, formData.email, formData.password
+      const response = await axios.post('http://127.0.0.1:8000/register', {
+        username: formData.name,
+        email: formData.email,
+        password: formData.password
+      })
+      if(response.status === 200) {
+        alert("You have successfully registered")
+        localStorage.setItem('useremail', formData.email)
+        localStorage.setItem('password', formData.password)
+      } else {
+        alert("Registration Failed")
+      }
+      console.log(response)
+    } catch (error) {
+      console.log(error)
+    }
+    finally {
+      navigate('/upload')
+    }
     // Handle registration logic here
   }
 

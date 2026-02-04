@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Leaf, Mail, Lock, Eye, EyeOff, ArrowLeft } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false)
@@ -9,9 +10,27 @@ function Login() {
     password: ''
   })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Login data:', formData)
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      const response = await axios.post('http://localhost:8000/login', formData)
+       if(response.status === 200) {
+        alert("You have successfully logged in")
+        localStorage.setItem('useremail', formData.email)
+        localStorage.setItem('password', formData.password)
+      } else {
+        alert("LoginFailed")
+      }
+      console.log(response)
+
+    } catch (error) {
+      console.log(error)
+      alert("There is trouble logging in!")
+    } finally {
+     navigate('/upload')
+    }
   }
 
   const handleChange = (e) => {

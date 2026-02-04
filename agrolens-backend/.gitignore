@@ -1,0 +1,28 @@
+venv/
+.env/
+.venv/
+
+.env
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+
+# FastAPI / logs / DBs
+*.log
+*.sqlite3
+
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+
+# IDE stuff
+.vscode/
+.idea/
+
+
+./app/.env
